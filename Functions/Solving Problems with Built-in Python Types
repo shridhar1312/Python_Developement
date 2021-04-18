@@ -1,0 +1,54 @@
+Description
+To be effective with Python we need to be comfortable using the basic data types that Python has to offer. In this Hands-On Lab, we'll be utilizing basic types to fix some failing automated tests, and ensuring that the application is working correctly. By the time we're finished with this hands-on lab we should be more comfortable using the different data types in Python, like strings, numbers, dictionaries, and lists.
+
+Learning Objectives
+1.Implement `print_todo` function
+The print_todo function needs to print out a string that uses the name and body values from a dictionary. To do this, we can utilize the print function and an f-string (using Python 3.6 and higher). Here's one way we could implement this function:
+
+def print_todo(todo):
+    """
+    print_todo takes in a todo dictionary and prints it out
+    with by separating the `name` from the `body` using a colon (:).
+
+    >>> todo = {'name': 'Example 1', 'body': 'This is a test task', 'points': '3'}
+    >>> print_todo(todo)
+    Example 1: This is a test task
+    >>>
+    """
+    print(f"{todo['name']}: {todo['body']}")
+    
+If we run the tests, we should see there are now no failures related to print_todo.
+
+2.Implement `take_first` function
+The take_first function needs to return two objects to us, in the form of the first todo and the remaining todos. We can achieve this by returning a tuple of values, and the pop function on a list should allow us to get the first item. Here's one way we might implement this function to get the tests passing:
+
+def take_first(todos):
+    """
+    take_first receives a list of todos and removes the first todo
+    and returns that todo and the remaining todos in a tuple
+
+    >>> todos = [{'name': 'Example 1', 'body': 'This is a test task', 'points': '3'},
+    ... {'name': 'Task 2', 'body': 'Yet another example task', 'points': '2'}]
+    >>> todo, todos = take_first(todos)
+    >>> todo
+    {'name': 'Example 1', 'body': 'This is a test task', 'points': '3'}
+    >>> todos
+    [{'name': 'Task 2', 'body': 'Yet another example task', 'points': '2'}]
+    """
+    todo = todos.pop(0)
+    return (todo, todos)
+3.Implement `sum_points` function
+The sum_points function needs to receive two todo dictionaries and return the sum of the point values. The doctest shows the point values will be strings, so we'll need to convert them to be integers before we perform our addition. Here's one way we could get these tests passing:
+
+def sum_points(todo1, todo2):
+    """
+    sum_points receives two todo dictionaries and returns the sum of their `point` values.
+
+    >>> todos = [{'name': 'Example 1', 'body': 'This is a test task', 'points': '3'},
+    ... {'name': 'Task 2', 'body': 'Yet another example task', 'points': '2'}]
+    >>> sum_points(todos[0], todos[1])
+    5
+    """
+    return int(todo1['points']) + int(todo2['points'])
+
+
